@@ -9,23 +9,13 @@ This repository contains the implementation of FaultGAT, Graph Attention-Based A
 **Easiest way - No Python version worries!**
 
 ```bash
-# Clone the repository
-git clone https://github.com/shuangxiangkan/FaultGAT.git
-cd FaultGAT
-
-# Pull the pre-built image (when available)
+# Option A: Pull the pre-built image (when available)
 docker pull ksx/faultgat:latest
 
-# Or build locally
+# Option B: Build locally
+git clone https://github.com/shuangxiangkan/FaultGAT.git
+cd FaultGAT
 ./build_docker.sh
-
-# Run experiments using docker-compose
-docker-compose run rq1  # Theoretical diagnosability
-docker-compose run rq2  # Fault ratio comparison  
-docker-compose run rq3  # Partial symptom analysis
-
-# Or run interactively
-docker run -it ksx/faultgat:latest bash
 ```
 
 ### Option 2: Local Installation
@@ -53,9 +43,9 @@ python --version  # Should show Python 3.10.x
 pip install -r requirements.txt
 ```
 
-## 📋 Usage
+## 📋 Running Experiments
 
-### Docker Usage (Recommended)
+### Using Docker (Recommended)
 
 **Method 1: Using docker-compose (Easiest)**
 ```bash
@@ -84,7 +74,7 @@ docker run -it ksx/faultgat:latest bash
 
 Results will be saved to `results_RQ*/` directories on your host machine.
 
-### Local Python Usage
+### Using Local Python
 
 ```bash
 # Research Question 1: Theoretical diagnosability
