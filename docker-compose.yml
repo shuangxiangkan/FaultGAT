@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  faultgat:
+    image: ksx/faultgat:latest
+    build: .
+    container_name: faultgat
+    volumes:
+      # Mount results directories to host for persistence
+      - ./results_RQ1:/app/results_RQ1
+      - ./results_RQ2:/app/results_RQ2
+      - ./results_RQ3:/app/results_RQ3
+      - ./datasets:/app/datasets
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+    stdin_open: true
+    tty: true
+
+  # Service for running specific experiments
+  rq1:
+    image: ksx/faultgat:latest
+    build: .
+    volumes:
+      - ./results_RQ1:/app/results_RQ1
+      - ./datasets:/app/datasets
+    command: python RQ1.py
+    environment:
+      - PYTHONPATH=/app
+
+  rq2:
+    image: ksx/faultgat:latest
+    build: .
+    volumes:
+      - ./results_RQ2:/app/results_RQ2
+      - ./datasets:/app/datasets
+    command: python RQ2.py
+    environment:
+      - PYTHONPATH=/app
+
+  rq3:
+    image: ksx/faultgat:latest
+    build: .
+    volumes:
+      - ./results_RQ3:/app/results_RQ3
+      - ./datasets:/app/datasets
+    command: python RQ3.py
+    environment:
+      - PYTHONPATH=/app 

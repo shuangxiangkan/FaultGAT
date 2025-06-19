@@ -4,15 +4,38 @@ This repository contains the implementation of FaultGAT, Graph Attention-Based A
 
 ## 🚀 Quick Start
 
-### Requirements
+### Option 1: Docker (Recommended) 🐳
 
+**Easiest way - No Python version worries!**
+
+```bash
+# Clone the repository
+git clone https://github.com/shuangxiangkan/FaultGAT.git
+cd FaultGAT
+
+# Pull the pre-built image (when available)
+docker pull ksx/faultgat:latest
+
+# Or build locally
+./build_docker.sh
+
+# Run experiments using docker-compose
+docker-compose run rq1  # Theoretical diagnosability
+docker-compose run rq2  # Fault ratio comparison  
+docker-compose run rq3  # Partial symptom analysis
+
+# Or run interactively
+docker run -it ksx/faultgat:latest bash
+```
+
+### Option 2: Local Installation
+
+⚠️ **IMPORTANT**: Requires exact Python version due to compiled bytecode (`FaultGAT.pyc`)
+
+**Requirements:**
 - **Python 3.10.x** (Strictly required - other versions will not work)
 - PyTorch >= 1.9.0
 - PyTorch Geometric >= 2.0.0
-
-### Installation
-
-⚠️ **IMPORTANT**: Please follow these installation steps exactly as shown below. The core FaultGAT model is currently provided as compiled bytecode (`FaultGAT.pyc`) which requires precise Python version matching.
 
 ```bash
 # Clone the repository
@@ -32,16 +55,45 @@ pip install -r requirements.txt
 
 ## 📋 Usage
 
-### Running Experiments
+### Docker Usage (Recommended)
+
+**Method 1: Using docker-compose (Easiest)**
+```bash
+# Run experiments with docker-compose
+docker-compose run rq1  # Research Question 1: Theoretical diagnosability
+docker-compose run rq2  # Research Question 2: Fault ratio comparison
+docker-compose run rq3  # Research Question 3: Partial symptom analysis
+```
+
+**Method 2: Using Docker directly**
+```bash
+# Create result directories first
+mkdir -p results_RQ1 results_RQ2 results_RQ3
+
+# Run experiments
+docker run --rm -v $(pwd)/results_RQ1:/app/results_RQ1 ksx/faultgat:latest python RQ1.py
+docker run --rm -v $(pwd)/results_RQ2:/app/results_RQ2 ksx/faultgat:latest python RQ2.py
+docker run --rm -v $(pwd)/results_RQ3:/app/results_RQ3 ksx/faultgat:latest python RQ3.py
+```
+
+**Interactive mode (for debugging):**
+```bash
+docker run -it ksx/faultgat:latest bash
+# Inside container: python RQ1.py
+```
+
+Results will be saved to `results_RQ*/` directories on your host machine.
+
+### Local Python Usage
 
 ```bash
-# Research Question 3: Theoretical diagnosability
+# Research Question 1: Theoretical diagnosability
 python RQ1.py
 
-# Research Question 1: Fault ratio comparison 
+# Research Question 2: Fault ratio comparison 
 python RQ2.py
 
-# Research Question 2: Partial symptom analysis
+# Research Question 3: Partial symptom analysis
 python RQ3.py
 ```
 
