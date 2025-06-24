@@ -1,6 +1,6 @@
-# FaultGAT: Graph Attention-Based Approach for Intermittent Fault Diagnosis in Multiprocessor Systems
+# FaultGAT: A Graph Attention Network-Based Approach for System-Level Intermittent Fault Diagnosis
 
-This repository contains the implementation of FaultGAT, Graph Attention-Based Approach for Intermittent Fault Diagnosis in Multiprocessor Systems
+This repository contains the implementation of FaultGAT, a Graph Attention Network-Based Approach for System-Level Intermittent Fault Diagnosis
 
 ## 🚀 Quick Start
 
